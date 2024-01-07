@@ -25,7 +25,7 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull rqbabdl/micro-frontend-r1:latest
       - name: Delete old container
-        run: docker -rm -f remoteOneContainer
+        run: docker rm -f remoteOneContainer
       - name: Run docker container
         run: docker run -d -p 3000:80 --name remoteOneContainer remote1
       
