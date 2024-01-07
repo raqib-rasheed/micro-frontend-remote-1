@@ -1,15 +1,14 @@
-FROM node:14.19.1-alpine
+FROM node:14.19.1-alpine as build
 WORKDIR /app
-COPY package*.json ./
-COPY yarn.lock ./
-RUN yarn install
+COPY package.json .
+RUN npm install
 COPY . .
-RUN yarn build
+RUN npm run build
 
-FROM nginx:1.23-alpine
+FROM nginx
 WORKDIR /usr/share/nginx/html
 RUN rm -rf *
-COPY --from=build /app/build .
+COPY --from=build /app/dist .
 EXPOSE 80
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
 
