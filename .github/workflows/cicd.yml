@@ -27,5 +27,5 @@ jobs:
       - name: Delete old container
         run: docker rm -f remoteOneContainer
       - name: Run docker container
-        run: docker run -d -p 3000:80 --name remoteOneContainer remote1
+        run: docker run -d -p 3000:80 --name remoteOneContainer rqbabdl/micro-frontend-r1
       
